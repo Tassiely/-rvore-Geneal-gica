@@ -1,0 +1,78 @@
+% Aqui coloca-se os projentores tipo pai e filho(A) ou mãe e filho(A).
+% Sempre antes da virgula será o projenitor, após a virgula o filho(A).
+progenitor(manoel, isaque).
+progenitor(mariaceabra, isaque).
+progenitor(isaque, cosme).
+progenitor(isaque, damião).
+progenitor(isaque, tania).
+progenitor(joão, antonia).
+progenitor(mariajorge, antonia).
+progenitor(antonia, cosme).
+progenitor(antonia, damião).
+progenitor(antonia, tania).
+progenitor(maria, nazir).
+progenitor(arlindo, nazir).
+progenitor(cosme, tassiely).
+progenitor(cosme, thassyara).
+progenitor(cosme, thais).
+progenitor(cosme, thales).
+progenitor(nazir, tassiely).
+progenitor(nazir, thassyara).
+progenitor(nazir, thais).
+progenitor(nazir, thales).
+progenitor(amailton, aariele).
+progenitor(amailton, mariana).
+progenitor(iracelia, felipe).
+progenitor(iracelia, vitor).
+progenitor(tania, mariana).
+progenitor(tania, mariele).
+progenitor(damião, felipe).
+progenitor(damião,vitor).
+
+% Definição de Sexo - Feminino
+sexo(mariaceabra, feminino).
+sexo(mariajorge, feminino).
+sexo(maria, feminino).
+sexo(tania, feminino).
+sexo(antonia, feminino).
+sexo(nazir, feminino).
+sexo(iracelia, feminino).
+sexo(tassiely, feminino).
+sexo(thais, feminino).
+sexo(thassyara, feminino).
+
+% Definição de Sexo - Masculino.
+sexo(joão, masculino).
+sexo(manoel, masculino).
+sexo(isaque, masculino).
+sexo(damião, masculino).
+sexo(cosme, masculino).
+sexo(amailton, masculino).
+sexo(thales, masculino).
+sexo(felipe, masculino).
+sexo(vitor, masculino).
+sexo(arlindo, masculino).
+
+% Algoritimo para identificar a Irmã.
+irma(X,Y):-progenitor(A,X),progenitor(A,Y),X\==Y,sexo(X, feminino).
+
+%Identificar o Irmão.
+irmao(X,Y):-progenitor(A,X),progenitor(A,Y),X\==Y,sexo(X, masculino).
+
+% Identificar o Avô.
+vô(X,Y):-progenitor(X,A),progenitor(A,Y),sexo(X, masculino).
+
+%Identificar a Avó.
+vo(X,Y):-progenitor(X,A),progenitor(A,Y),sexo(X, feminino).
+
+% Identificar a mãe.
+mae(X,Y):-progenitor(X,Y),sexo(X ,feminino).
+
+% Identificar o Pai.
+pai(X,Y):-progenitor(X,Y),sexo(X, masculino).
+
+% Identificar o Tio.
+tio(X,Y):-irmao(X,A),progenitor(A,Y).
+
+% Identificar a Tia.
+tia(X,Y):-irma(X,A),progenitor(A,Y).
